@@ -1,3 +1,15 @@
 body{
+    height: 90vh;
     background-image: url(../images/galaxia.webp);   
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+.container{
+    border: solid black;
+    background-color: rgba(216, 173, 173, 0.678); 
+    width: 350px;
+    height: 350px;
+    border-radius: 15px;
+    display: grid;
 }

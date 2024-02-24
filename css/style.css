@@ -1,3 +1,6 @@
+*{
+    margin: 0;
+}
 body{
     height: 90vh;
     background-image: url(../images/galaxia.webp);   
@@ -5,26 +8,39 @@ body{
     justify-content: center;
     align-items: center;
 }
-.container{
+.container {
     border: solid black;
     background-color: rgba(216, 173, 173, 0.678); 
     width: 400px;
     height: 400px;
     border-radius: 15px;
     display: grid;
-    grid-template-columns: 1fr ;
+    align-items: center;
+    justify-content: center;
+}
+.time{
+    display: flex; 
     justify-content: center;
     align-items: center;
+    font-size: 3rem;
 }
-.boton1{
-    width: 130px;
-    height: auto;
+.botones button{
+    border-radius: 5px;
+    background-color: rgba(224, 210, 198, 0.808);
+    cursor: pointer;
+    font-size: 20px;
 }
-.boton2{
-    width: 100px;
-    height: 100px;
-}
-.boton3{
-    width: 150px;
-    height: 100px;
+
+@media screen and  (max-width: 1200px) {
+    .container{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+        grid-column: 2 span;    
+    }
+    .botones{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr;
+    }
 }

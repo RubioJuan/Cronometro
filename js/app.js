@@ -1,53 +1,89 @@
-let cronometro;
-let tiempo = 0
-let corriendo = false;
+let hr = min = sec = ms = "0" + 0, startTimer;
 
-function iniciarCronometro() {
-    if (corriendo){
-        corriendo = true;
-        cronometro.setInterval(actualizarTiempo, 1000);
-    }
+const startButon = document.querySelector(".start"),
+    stopButon = document.querySelector(".stop"),
+    resetButon = document.querySelector(".reset");
+
+startButon.addEventListener("click",start);
+stopButon.addEventListener("click", stop);
+resetButon.addEventListener("click", reset);
+
+// // El addEventListener() método de la EventTargetinterfaz 
+// configura una función que se llamará cada vez que el evento 
+// especificado se entregue al objetivo.
+
+// Funcion inicio, milisegundos, segundos, minutos y horas
+function start() {
+    startButon.classList.add("active");
+    stopButon.classList.remove("stopActive");
+
+    startTimer = setInterval(() => {
+        ms++;
+        ms = ms < 10 ? "0"  + ms : ms;
+
+        if (ms === 100) {
+            sec++;
+            sec = sec < 10 ? "0" + sec : sec;
+            ms = "0" + 0;
+        }
+        if (sec === 60) {
+            min++;
+            min = min < 10 ? "0" + min : min;
+            sec = "0" + 0;
+        }
+        if (min === 60) {
+            hr++;
+            hr = hr < 10 ? "0" + hr : hr;
+            min = "0" + 0;
+        }
+
+        putValue();
+
+    },10);
 }
-// // El setInterval llama a una función o ejecuta un fragmento de código de forma 
-// reiterada, con un retardo de tiempo fijo 
-// entre cada llamada.
+// ms = ms < 10 ? "0" + ms : ms;: Verifica si el contador de milisegundos ms es menor que 10. 
+// Si lo es, agrega un "0" delante de los milisegundos para mantener un formato consistente
+//  (por ejemplo, cambia "9" a "09"). Si ms es mayor o igual a 10, simplemente deja ms sin cambios.
 
-function Pausa() {
-    corriendo = false;
-    clearInterval(cronometro);
-}
-// Cancela una acción reiterativa que se inició mediante una llamada a setInterval 
+// -----------------------------------------------------------------------------------------------------------
 
-function reiterarCronometro() {
-    Pausa();
-    tiempo = 0;
-    actualizarTiempo();
-}
-function actulizarTiempo() {
-    const horas = Math.floor(tiempo / 3600);
-    const minutos = Math.floor((tiempo % 3600) / 60);
-    const segundos = tiempo % 60;
+// add(className): Agrega una clase CSS al elemento.
+// remove(className): Elimina una clase CSS del elemento.
+// toggle(className): Alterna la presencia de una clase CSS. Si la clase está presente, 
+// la elimina; de lo contrario, la agrega.
+// contains(className): Verifica si el elemento tiene una clase CSS específica.
+// replace(oldClass, newClass): Reemplaza una clase CSS existente por otra.
 
-    const horasStr = horas < 10 ? "0" + horas : horas;
-    const minutosStr = minutos < 10 ? "0" + minutos : minutos;
-    const segundosStr = segundos < 10 ? "0" + segundos : segundos;
-
-    document.getElementById("cronometro").innerText = horasStr + ":" + minutosStr + ":" + segundosStr;
+function stop() {
+    startButon.classList.remove("active");
+    stopButon.classList.remove("stopActive");
+    clearInterval(startTimer);
 }
 
-// Math.floor(x)
-// Devuelve el mayor entero menor que o igual a un número.
-// Lo utilice porque estamos utilizando la function para actualizar el tiempo and eso hace el codigo Math.floor
+function reset() {
+    startButon.classList.remove("active");
 
-// function actualizarCronometro() {
-//     tiempo++;
-//     const horas = Math.floor(tiempo / 3600);
-//     const minutos = Math.floor((tiempo % 3600) / 60);
-//     const segundos = tiempo % 60;
+    // classList es una forma práctica de acceder a la lista de clases de un elemento
+    // como una cadena de texto delimitada por espacios a través de element.className
 
-//     const horasStr = horas < 10 ? "0" + horas : horas;
-//     const minutosStr = minutos < 10 ? "0" + minutos : minutos;
-//     const segundosStr = segundos < 10 ? "0" + segundos : segundos;
+    stopButon.classList.remove("stopActive");
+    clearInterval(startTimer);
 
-//     document.getElementById("cronometro").innerText = horasStr + ":" + minutosStr + ":" + segundosStr;
-// }
+// clearInterval(startTimer);: Detiene el intervalo de tiempo que se había
+//  establecido previamente para actualizar el cronómetro
+
+    hr = min = sec = ms = "0" + 0;
+    putValue();
+    // putValue(); Llama a la funcion para actualizar la visualización del cronómetro en la interfaz de usuario.
+}
+
+
+// Se e asigna a cada uno de los elementos en Js, porque es en donde se 
+// le mostrara la parte de cada uno en el HTML
+function putValue() {
+    document.querySelector('.millisecond').innerHTML = ms;
+    document.querySelector('.second').innerHTML = sec;
+    document.querySelector('.minute').innerHTML = min;
+    document.querySelector('.hour').innerHTML = hr;
+}
+

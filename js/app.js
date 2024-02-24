@@ -8,7 +8,7 @@ startButon.addEventListener("click",start);
 stopButon.addEventListener("click", stop);
 resetButon.addEventListener("click", reset);
 
-// // El addEventListener() método de la EventTargetinterfaz 
+// El addEventListener() método de la EventTargetinterfaz 
 // configura una función que se llamará cada vez que el evento 
 // especificado se entregue al objetivo.
 
@@ -70,7 +70,7 @@ function reset() {
     clearInterval(startTimer);
 
 // clearInterval(startTimer);: Detiene el intervalo de tiempo que se había
-//  establecido previamente para actualizar el cronómetro
+// establecido previamente para actualizar el cronómetro
 
     hr = min = sec = ms = "0" + 0;
     putValue();

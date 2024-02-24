@@ -2,7 +2,7 @@
     margin: 0;
 }
 body{
-    background-color: rgb(133, 204, 226);
+    background: linear-gradient(rgb(133, 204, 226),rgb(87, 226, 226),rgb(151, 151, 238));
     height: 90vh;
     display: grid;
     justify-content: center;
@@ -10,7 +10,7 @@ body{
 }
 .container {
     border: solid black;
-    background-color: rgba(226, 200, 200, 0.678); 
+    background-color: rgba(235, 224, 224, 0.87); 
     width: 400px;
     height: 400px;
     border-radius: 15px;
@@ -26,7 +26,7 @@ body{
 }
 .botones button{
     border-radius: 5px;
-    background-color: rgba(224, 210, 198, 0.808);
+    background-color: rgba(224, 216, 209, 0.808);
     cursor: pointer;
     font-size: 20px;
 }
